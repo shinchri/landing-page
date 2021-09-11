@@ -40,6 +40,7 @@ for (let i = 1; i <= 4; i++) {
     const newElement = document.createElement('li');
     //newElement.innerHTML = '<a href="#section' + i + '">Section ' + i + '</a>';
     newElement.innerText = 'Section ' + i;
+    newElement.classList.add('menu__link');
 
     fragment.appendChild(newElement);
 }
