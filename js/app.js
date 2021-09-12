@@ -49,7 +49,8 @@ for (let i = 1; i <= 4; i++) {
     // newElement.innerHTML = '<a href="#' + i + '">Section ' + i + '</a>';
     newElement.innerText = 'Section ' + i;
     newElement.classList.add('menu__link');
-
+    newElement.classList.add('scroll_to')
+;
     fragment.appendChild(newElement);
 }
 
@@ -72,7 +73,16 @@ for (let i = 0; i < sections.length; i++) {
 }
 
 // Scroll to anchor ID using scrollTO event
+const anchors = document.getElementsByClassName('scroll_to');
 
+for (let i = 1; i <= anchors.length; i++) {
+    let anchor = anchors[i-1];
+    
+    anchor.addEventListener('click', function() {
+        const section = document.getElementById('section' + i);
+        section.scrollIntoView();
+    })
+}
 
 /**
  * End Main Functions
