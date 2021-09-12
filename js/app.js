@@ -24,6 +24,9 @@
  * Start Helper Functions
  * 
 */
+
+// Check if the element is within the viewport
+// Returns true if it is, false otherwise
 function isInViewport(el) {
     const rect = el.getBoundingClientRect();
     return (
@@ -42,46 +45,56 @@ function isInViewport(el) {
 */
 
 // build the nav
-const fragment = document.createDocumentFragment();
+function buildNav () {
+    const fragment = document.createDocumentFragment();
 
-for (let i = 1; i <= 4; i++) {
-    const newElement = document.createElement('li');
-    // newElement.innerHTML = '<a href="#' + i + '">Section ' + i + '</a>';
-    newElement.innerText = 'Section ' + i;
-    newElement.classList.add('menu__link');
-    newElement.classList.add('scroll_to')
-;
-    fragment.appendChild(newElement);
+    for (let i = 1; i <= 4; i++) {
+        const newElement = document.createElement('li');
+        // newElement.innerHTML = '<a href="#' + i + '">Section ' + i + '</a>';
+        newElement.innerText = 'Section ' + i;
+        newElement.classList.add('menu__link');
+        newElement.classList.add('scroll_to')
+    ;
+        fragment.appendChild(newElement);
+    }
+    
+    document.getElementById('navbar__list').appendChild(fragment);
 }
 
-document.getElementById('navbar__list').appendChild(fragment);
+
 
 // Add class 'active' to section when near top of viewport
-const sections = document.querySelectorAll('section');
-for (let i = 0; i < sections.length; i++) {
-    const section = sections[i];
-    document.addEventListener('scroll', function() {
-        const sectionTitle = isInViewport(section);
+function addActiveClass(selector) {
+    const sections = document.querySelectorAll(selector);
+    for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+        document.addEventListener('scroll', function() {
+            const sectionTitle = isInViewport(section);
 
-        if(sectionTitle) {
-            section.classList.add('your-active-class');
-        }
-        else {
-            section.classList.remove('your-active-class');
-        }
-    })
+            if(sectionTitle) {
+                section.classList.add('your-active-class');
+            }
+            else {
+                section.classList.remove('your-active-class');
+            }
+        })
+    }
 }
 
-// Scroll to anchor ID using scrollTO event
-const anchors = document.getElementsByClassName('scroll_to');
 
-for (let i = 1; i <= anchors.length; i++) {
-    let anchor = anchors[i-1];
-    
-    anchor.addEventListener('click', function() {
-        const section = document.getElementById('section' + i);
-        section.scrollIntoView();
-    })
+
+// Scroll to anchor ID using scrollTO event
+function scrollToSection() {
+    const anchors = document.getElementsByClassName('scroll_to');
+
+    for (let i = 1; i <= anchors.length; i++) {
+        let anchor = anchors[i-1];
+        
+        anchor.addEventListener('click', function() {
+            const section = document.getElementById('section' + i);
+            section.scrollIntoView();
+        })
+    }
 }
 
 /**
@@ -91,9 +104,10 @@ for (let i = 1; i <= anchors.length; i++) {
 */
 
 // Build menu 
+buildNav();
 
 // Scroll to section on link click
+addActiveClass('section');
 
 // Set sections as active
-
-
+scrollToSection();
