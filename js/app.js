@@ -96,7 +96,7 @@ function scrollToSection() {
         
         anchor.addEventListener('click', function() {
             const section = document.getElementById('section' + i);
-            section.scrollIntoView();
+            section.scrollIntoView({behavior: "smooth"});
         })
     }
 }
