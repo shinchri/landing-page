@@ -47,14 +47,14 @@ function isInViewport(el) {
 // build the nav
 function buildNav () {
     const fragment = document.createDocumentFragment();
+    const section_num = document.getElementsByClassName('landing__container');
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= section_num.length; i++) {
         const newElement = document.createElement('li');
         // newElement.innerHTML = '<a href="#' + i + '">Section ' + i + '</a>';
         newElement.innerText = 'Section ' + i;
         newElement.classList.add('menu__link');
-        newElement.classList.add('scroll_to')
-    ;
+        newElement.classList.add('scroll_to');
         fragment.appendChild(newElement);
     }
     
