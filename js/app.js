@@ -51,7 +51,7 @@ function buildNav () {
 
     for (let i = 1; i <= section_num.length; i++) {
         const newElement = document.createElement('li');
-        // newElement.innerHTML = '<a href="#' + i + '">Section ' + i + '</a>';
+        
         newElement.innerText = 'Section ' + i;
         newElement.classList.add('menu__link');
         newElement.classList.add('scroll_to');
@@ -64,18 +64,22 @@ function buildNav () {
 
 
 // Add class 'active' to section when near top of viewport
-function addActiveClass(selector) {
+function addActiveClass(selector, class_name) {
     const sections = document.querySelectorAll(selector);
+    const menu_items = document.querySelectorAll('.menu__link')
     for (let i = 0; i < sections.length; i++) {
         const section = sections[i];
+        const item = menu_items[i];
         document.addEventListener('scroll', function() {
             const sectionTitle = isInViewport(section);
 
             if(sectionTitle) {
-                section.classList.add('your-active-class');
+                section.classList.add(class_name);
+                item.classList.add(class_name)
             }
             else {
-                section.classList.remove('your-active-class');
+                section.classList.remove(class_name);
+                item.classList.remove(class_name);
             }
         })
     }
@@ -107,7 +111,7 @@ function scrollToSection() {
 buildNav();
 
 // Scroll to section on link click
-addActiveClass('section');
+addActiveClass('section', 'your-active-class');
 
 // Set sections as active
 scrollToSection();
