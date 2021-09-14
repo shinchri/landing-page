@@ -29,11 +29,13 @@
 // Returns true if it is, false otherwise
 function isInViewport(el) {
     const rect = el.getBoundingClientRect();
+    console.log(rect);
+    console.log(window.innerHeight);
+    console.log(document.documentElement.clientHeight);
+    console.log(rect.bottom<=(window.innerHeight || document.documentElement.clientHeight));
     return (
-        rect.top >= -200 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        rect.top <= 150 &&
+        rect.bottom >= 150
     );
 }
 
